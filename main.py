@@ -2,6 +2,8 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter.messagebox import showinfo
+import random
 
 def readFile(file):
   """read from file"""
@@ -15,6 +17,13 @@ def writeFile(file, content):
   if file != None:
     with file as f:
       f.write(content)
+
+def eightBall():
+  """a magic 8-ball (returns a string)"""
+  responses = ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", 
+               "Yes", "Signs point to yes", "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again",
+               "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"] # list of responses
+  return random.choice(responses) # pick random response
 
 '''POPUPS'''
 def helpPopup(master):
@@ -57,7 +66,7 @@ class fileWindow():
   def __init__(self, master): # initialise window
     master.geometry('600x400+50+50')
     self.widgets(master) # initialise top bar widgets
-    self.entry(master)
+    self.entry(master) #initialise entry text box
 
   def widgets(self, master): #setup widgets
     """initialise menubar onto master"""
@@ -76,8 +85,13 @@ class fileWindow():
     m2.add_command(label="Open", command=self.openFile)
     m2.add_command(label="Save", command=self.saveFile)
 
+    m3 = Menu() #third cascading menu
+    #add buttons to cascade
+    m3.add_command(label="Magic-8 ball", command=lambda:showinfo(title="Magic-8 ball", message=eightBall()))
+
     menubar.add_cascade(label="battlefield-aquaintance", menu=m1) #add cascading menu to bar
     menubar.add_cascade(label="File", menu=m2)
+    menubar.add_cascade(label="Extras", menu=m3)
 
   def entry(self, master):
     """initialise text entry onto master"""
