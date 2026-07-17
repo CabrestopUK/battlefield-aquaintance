@@ -77,7 +77,7 @@ class fileWindow():
   def writeEntry(self, string):
     """write into the text entry"""
     self.e.delete(index1="1.0", index2="end") # delete all content in the text entry first
-    self.e.insert("1.0", string)    
+    self.e.insert("1.0", string) # insert into the text entry
 
 class app():
   """App class"""
