@@ -2,6 +2,17 @@
 from tkinter import *
 from tkinter import ttk
 
+def readFile(file):
+  """read from file"""
+  with open(file) as f:
+    read_data = f.read()
+  return read_data
+
+def writeFile(filename, content):
+  """write to file"""
+  with open(filename, "w") as f:
+    f.write(content)
+
 '''POPUPS'''
 def helpPopup(master):
   """display a help popup"""
