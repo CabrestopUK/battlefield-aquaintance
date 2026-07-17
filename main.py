@@ -54,11 +54,17 @@ class fileWindow():
     '''MENUBAR BUTTONS'''
     m1 = Menu() #first cascading menu
     # add buttons to cascade NOTE use command=lambda: for func with arguments in buttons
-    m1.add_command(label="About", command=lambda:aboutPopup(master)) # TODO add an about popup window
+    m1.add_command(label="About", command=lambda:aboutPopup(master))
     m1.add_command(label="Help", command=lambda:helpPopup(master)) 
-    
+
+    m2 = Menu() #second cascading menu
+    #add buttons to cascade
+    m2.add_command(label="Open")
+    m2.add_command(label="Save")
+
     menubar.add_cascade(label="battlefield-aquaintance", menu=m1) #add cascading menu to bar
-  
+    menubar.add_cascade(label="File", menu=m2)
+
   def entry(self, master):
     """initialise text entry onto master"""
     master.grid()# add grid to master
