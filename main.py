@@ -1,17 +1,20 @@
 #imports
 from tkinter import *
 from tkinter import ttk
+from tkinter import filedialog
 
 def readFile(file):
   """read from file"""
-  with open(file) as f:
-    read_data = f.read()
-  return read_data
+  if file != None:
+    with file as f:
+      read_data = f.read()
+    return read_data
 
-def writeFile(filename, content):
+def writeFile(file, content):
   """write to file"""
-  with open(filename, "w") as f:
-    f.write(content)
+  if file != None:
+    with file as f:
+      f.write(content)
 
 '''POPUPS'''
 def helpPopup(master):
@@ -28,7 +31,7 @@ def helpPopup(master):
   t.grid_rowconfigure(0, weight=1)
   
   #label
-  ttk.Label(t, text="Read the documentation in doc.txt in the root folder").grid(column=0, row=0)
+  ttk.Label(t, text="good luck :)").grid(column=0, row=0)
 
 def aboutPopup(master):
   """display an about popup"""
@@ -70,8 +73,8 @@ class fileWindow():
 
     m2 = Menu() #second cascading menu
     #add buttons to cascade
-    m2.add_command(label="Open")
-    m2.add_command(label="Save")
+    m2.add_command(label="Open", command=self.openFile)
+    m2.add_command(label="Save", command=self.saveFile)
 
     menubar.add_cascade(label="battlefield-aquaintance", menu=m1) #add cascading menu to bar
     menubar.add_cascade(label="File", menu=m2)
@@ -95,6 +98,19 @@ class fileWindow():
     """write into the text entry"""
     self.e.delete(index1="1.0", index2="end") # delete all content in the text entry first
     self.e.insert("1.0", string) # insert into the text entry
+  
+  def openFile(self):
+    """open from and read from a file"""
+    o = filedialog.askopenfile() # win open file menu
+    if o != None: # askopenfile() WILL return None if cancel is pressed so to avoid exceptions only run if not None
+      f = readFile(o) #read the file
+      self.writeEntry(f) #write to the text entry
+
+  def saveFile(self):
+    """save to a file"""
+    o = filedialog.asksaveasfile() # win save file menu
+    if o != None: # asksaveasfile() WILL return None if cancel is pressed so to avoid exceptions only run if not None
+      writeFile(o, self.getEntry()) #write to the file
 
 class app():
   """App class"""
