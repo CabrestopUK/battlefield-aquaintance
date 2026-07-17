@@ -19,9 +19,12 @@ class fileWindow():
     
     menubar.add_cascade(label="Text editor", menu=m1) #add cascading menu to bar
 
-# init file window object
-window = Tk()
-app = fileWindow(window)
+class app():
+  root = Tk()
+  def __init__(self):
+    fileWindow(self.root)
+  def run(self):
+    self.root.mainloop()
 
-#runs the event loop
-window.mainloop()
+a = app()
+a.run()
