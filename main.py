@@ -40,7 +40,9 @@ def aboutPopup(master):
 class fileWindow():
   """Make a file window"""
   def __init__(self, master): # initialise window
+    master.geometry('600x400+50+50')
     self.widgets(master) # initialise top bar widgets
+    self.entry(master)
 
   def widgets(self, master): #setup widgets
     """initialise menubar onto master"""
@@ -55,6 +57,16 @@ class fileWindow():
     m1.add_command(label="Help", command=lambda:helpPopup(master)) 
     
     menubar.add_cascade(label="battlefield-aquaintance", menu=m1) #add cascading menu to bar
+  
+  def entry(self, master):
+    """initialise text entry onto master"""
+    master.grid()# add grid to master
+
+    #fill screen with column and row 0
+    master.grid_columnconfigure(0, weight=1)
+    master.grid_rowconfigure(0, weight=1)
+
+    entry = Text(master).grid(column=0, row=0) #set up text field
 
 class app():
   """App class"""
