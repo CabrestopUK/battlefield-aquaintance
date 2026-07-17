@@ -39,6 +39,7 @@ def aboutPopup(master):
 
 class fileWindow():
   """Make a file window"""
+  e = None
   def __init__(self, master): # initialise window
     master.geometry('600x400+50+50')
     self.widgets(master) # initialise top bar widgets
@@ -66,7 +67,17 @@ class fileWindow():
     master.grid_columnconfigure(0, weight=1)
     master.grid_rowconfigure(0, weight=1)
 
-    entry = Text(master).grid(column=0, row=0) #set up text field
+    self.e = Text(master) #set up text field
+    self.e.grid(column=0, row=0) # make it fit the window (for now TODO fix resizing the window)
+  
+  def getEntry(self): 
+    """get the content of the text entry"""
+    return self.e.get(index1="1.0", index2="end") # return content from "1.0" to end NOTE this is really irritating why is there no start bruh
+  
+  def writeEntry(self, string):
+    """write into the text entry"""
+    self.e.delete(index1="1.0", index2="end") # delete all content in the text entry first
+    self.e.insert("1.0", string)    
 
 class app():
   """App class"""
