@@ -64,9 +64,14 @@ class fileWindow():
   """Make a file window"""
   e = None
   def __init__(self, master): # initialise window
-    master.geometry('600x400+50+50')
+    self.setPropeties(master)
     self.widgets(master) # initialise top bar widgets
     self.entry(master) #initialise entry text box
+
+  def setPropeties(self, master):
+    master.geometry('600x400+50+50')
+    master.title("battlefield-aquaintance")
+    master.iconbitmap("b-a.ico")
 
   def widgets(self, master): #setup widgets
     """initialise menubar onto master"""
