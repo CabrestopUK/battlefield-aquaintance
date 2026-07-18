@@ -95,9 +95,9 @@ class fileWindow():
 
   def entry(self, master):
     """initialise text entry onto master"""
-       
+
     self.e = Text(master) #set up text field
-    self.e.pack(fill="both", expand=True) # make it fit the window (for now TODO fix resizing the window)
+    self.e.pack(fill="both", expand=True) # make it fit the window NOTE pack is better as it updates to resize if only 1 child
   
   def getEntry(self): 
     """get the content of the text entry"""
