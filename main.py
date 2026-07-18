@@ -95,14 +95,9 @@ class fileWindow():
 
   def entry(self, master):
     """initialise text entry onto master"""
-    master.grid()# add grid to master
-
-    #fill screen with column and row 0
-    master.grid_columnconfigure(0, weight=1)
-    master.grid_rowconfigure(0, weight=1)
-
+       
     self.e = Text(master) #set up text field
-    self.e.grid(column=0, row=0) # make it fit the window (for now TODO fix resizing the window)
+    self.e.pack(fill="both", expand=True) # make it fit the window (for now TODO fix resizing the window)
   
   def getEntry(self): 
     """get the content of the text entry"""
